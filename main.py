@@ -70,4 +70,17 @@ def main():
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler("isi_form", isi_form)],
         states={
-            NAMA: [MessageHandler(filters.TEXT & ~filters.COM
+            NAMA: [MessageHandler(filters.TEXT & ~filters.COMMAND, nama)],
+            ALAMAT: [MessageHandler(filters.TEXT & ~filters.COMMAND, alamat)],
+            PESANAN: [MessageHandler(filters.TEXT & ~filters.COMMAND, pesanan)],
+        },
+        fallbacks=[],
+    )
+
+    app.add_handler(conv_handler)
+
+    print("BOT ONLINE")
+    app.run_polling()
+
+if __name__ == "__main__":
+    main()
